@@ -6,10 +6,9 @@ A web-based application that uses **Google's Gemini AI** to automatically extrac
 
 ## 📋 Table of Contents
 - [Features](#-Features)
-- [Tech Stack](#-Tech-stack)
+- [Tech Stack](#-Tech-Stack)
 - [Setup and Installation](#-setup-and-installation)
 - [How to Run](#-How-to-run)
-- [How to Use](#-How-to-use)
 
 ---
 
