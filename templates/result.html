@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extraction Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .container { max-width: 900px; }
+        .table-responsive { max-height: 60vh; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                 <h2 class="mb-0">Extraction Results for <span class="text-primary">{{ filename }}</span></h2>
+                 <a href="/" class="btn btn-secondary">Process Another File</a>
+            </div>
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    <strong>Error:</strong> {{ error }}
+                </div>
+            {% elif events %}
+                <div class="d-flex gap-2 mb-3">
+                    <a href="/download/json" class="btn btn-success">Download as JSON</a>
+                    <a href="/download/csv" class="btn btn-info">Download as CSV</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark" style="position: sticky; top: 0;">
+                            <tr>
+                                <th>Event</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for event in events %}
+                            <tr>
+                                <td>{{ event.event }}</td>
+                                <td>{{ event.start_time if event.start_time is not none else 'N/A' }}</td>
+                                <td>{{ event.end_time if event.end_time is not none else 'N/A' }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                 <div class="alert alert-warning">
+                    <strong>No events found.</strong> The document might not contain recognizable port operations, or the model could not identify any.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

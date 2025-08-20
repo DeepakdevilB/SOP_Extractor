@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoF Event Extractor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-indigo-50 to-white text-gray-800 font-sans">
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden">
+  <div class="relative isolate bg-gradient-to-b from-indigo-200/40 via-white to-white">
+    <div class="mx-auto max-w-6xl px-6 py-16 sm:py-24 lg:grid lg:grid-cols-2 lg:gap-12 lg:px-12">
+      
+      <!-- Left Content -->
+      <div class="max-w-2xl">
+        <div class="flex items-center space-x-3">
+          <img class="h-12 animate-pulse" src="{{ url_for('static', filename='cargo--ship.png') }}" alt="Cargo Ship Logo">
+          <span class="text-gray-700 font-medium flex items-center gap-2">
+            PortOps | Event Extractor
+          </span>
+        </div>
+        <h1 class="mt-10 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900">
+          Statement of Facts Event Extractor
+        </h1>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+          Upload your <b>SoF document</b> in PDF or Word (.docx) format to automatically extract all port operation events.
+        </p>
+      </div>
+
+      <!-- Right Content (Decorative Card) -->
+      <div class="mt-12 lg:mt-0 flex justify-center relative">
+        <div class="bg-gradient-to-br from-indigo-400 via-indigo-500 to-indigo-600 p-6 rounded-3xl shadow-xl flex flex-col items-center transform hover:scale-105 transition duration-500">
+          <img src="{{ url_for('static', filename='cargo-ship.gif') }}" 
+     class="rounded-xl drop-shadow-lg" width="220" alt="SoF Animation">
+          <p class="mt-6 text-white text-lg sm:text-2xl font-bold tracking-wide text-center drop-shadow-lg">
+            Fast, Accurate, Automated <br> EXTRACTION
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upload Form Section -->
+<section class="py-16 bg-gradient-to-t from-indigo-100/40 to-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="backdrop-blur-xl bg-white/70 shadow-lg rounded-2xl p-8 border border-gray-200">
+      <form action="/" method="post" enctype="multipart/form-data" class="space-y-6">
+        
+        <!-- File Upload -->
+        <div>
+          <label for="sof_document" class="block text-sm font-medium text-gray-700">Select SoF Document</label>
+          <input type="file" id="sof_document" name="sof_document" 
+                 accept=".pdf,.docx" required
+                 class="mt-2 w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 
+                        file:rounded-md file:border-0 file:text-sm file:font-semibold 
+                        file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+        </div>
+
+        <!-- Error Alert -->
+        {% if error %}
+        <div class="bg-red-100 border border-red-300 text-red-800 p-4 rounded-xl text-sm">
+          {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Submit Button -->
+        <div>
+          <button type="submit" 
+                  class="w-full sm:w-48 rounded-lg bg-indigo-600 py-3 text-white font-semibold 
+                         shadow-md hover:bg-indigo-500 hover:scale-105 transition duration-300">
+            🚀 Extract Events
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
