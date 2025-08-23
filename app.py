@@ -199,6 +199,9 @@ def download_file(filetype: str):
     return redirect(url_for('index'))
 
 # ------------------------------ MAIN -----------------------------------
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8081, debug=True)
+    port = int(os.environ.get("PORT", 8080))  # fallback to 8080 locally
+    app.run(host="0.0.0.0", port=port, debug=False)
+
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=8081, debug=True)
