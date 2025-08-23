@@ -23,5 +23,5 @@ scikit-learn>=1.3.0
 
 # Web utilities (comes with Flask but good to be explicit)
 werkzeug>=2.3.0
-
+gunicorn
 python-docx
