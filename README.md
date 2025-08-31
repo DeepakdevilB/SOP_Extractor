@@ -1,77 +1,120 @@
-Maritime SoF Event Extractor
-This web application uses the Gemini AI model to automatically extract structured data from maritime "Statement of Facts" (SoF) documents. Users can upload PDF or DOCX files, and the application will parse them to identify key details like vessel information and a chronological log of port operations events.
+🚢 Maritime SoF Event Extractor
 
-The application is built with Python and Flask for the backend, and uses the google-generativeai library to interface with the Gemini API.
+A web application that uses the Gemini AI model to automatically extract structured data from maritime Statement of Facts (SoF) documents.
 
-Features
-AI-Powered Extraction: Leverages the Gemini model to understand and parse complex, unstructured maritime documents.
+Users can upload PDF or DOCX files, and the app will parse them to identify key vessel details and generate a chronological log of port operations events.
 
-Web-Based Interface: A modern and user-friendly interface for uploading documents and viewing results.
+✨ Features
 
-Handles Multiple Document Types: Supports both text-based (digital) and scanned (image-based) PDF and DOCX files.
+🤖 AI-Powered Extraction – Leverages Gemini AI to understand and parse complex, unstructured maritime documents.
 
-Structured Data Output: Converts unstructured SoF text into a clean JSON object containing ship details and a timeline of events.
+🌐 Web-Based Interface – User-friendly interface for uploading documents and viewing results.
 
-Event Analysis: Provides a quick analysis of the extraction process, including success rate and the number of parsed vs. skipped events.
+📄 Handles Multiple File Types – Supports both digital text-based and scanned (image-based) PDFs and DOCX files.
 
-Data Export: Allows users to download the full extracted data as a JSON file or just the event log as a CSV file.
+📊 Structured Data Output – Converts unstructured SoF text into a clean JSON object containing ship details and event timelines.
 
-Setup and Installation
-Follow these steps to set up and run the project locally.
+🔍 Event Analysis – Quick insights on extraction: success rate, parsed vs. skipped events.
 
-1. Prerequisites
-Python 3.8 or newer
+📥 Data Export – Download results as JSON (full data) or CSV (event log only).
 
-A Gemini API Key. You can get one from Google AI Studio.
+🛠️ Tech Stack
 
-2. Clone the Repository
+Backend: Python, Flask
+
+AI Model: Google Gemini (via google-generativeai library)
+
+Frontend: HTML, CSS, JavaScript (Flask templates)
+
+⚙️ Setup & Installation
+1️⃣ Prerequisites
+
+Python 3.8+
+
+A Gemini API Key (Get one from Google AI Studio
+)
+
+2️⃣ Clone the Repository
 git clone <your-repository-url>
 cd <your-repository-directory>
 
-3. Set Up a Virtual Environment
-It's highly recommended to use a virtual environment to manage project dependencies.
+3️⃣ Create a Virtual Environment
+# Create venv
+python3 -m venv venv  
 
-# Create the virtual environment
-python3 -m venv venv
+# Activate (Linux / macOS)
+source venv/bin/activate  
 
-# Activate it (on macOS/Linux)
-source venv/bin/activate
+# Activate (Windows)
+.\venv\Scripts\activate  
 
-# Activate it (on Windows)
-.\venv\Scripts\activate
-
-4. Install Dependencies
-Install all the required Python libraries from the requirements.txt file.
-
+4️⃣ Install Dependencies
 pip install -r requirements.txt
 
-5. Configure Your API Key
-The application loads your Gemini API key from a .env file.
+5️⃣ Configure Your API Key
 
-Create a new file named .env in the root of your project directory.
-
-Add your API key to this file as follows:
+Create a .env file in the root directory and add:
 
 GEMINI_API_KEY="YOUR_API_KEY_HERE"
 
-How to Run
-With your virtual environment activated and the .env file configured, start the Flask web server with the following command:
+🚀 Running the Application
+
+With your venv activated and .env configured, start the server:
 
 python3 app.py
 
-The application will now be running and accessible at http://127.0.0.1:8081 in your web browser.
 
-How to Use
-Open the Web Interface: Navigate to http://127.0.0.1:8081.
+The app will be available at:
+👉 http://127.0.0.1:8081
 
-Upload a Document: Drag and drop your SoF document (PDF or DOCX) into the upload area, or click to browse for a file.
+📖 How to Use
 
-Select Processing Type:
+Open Web App → Go to http://127.0.0.1:8081
 
-Choose "Scanned / Image Document" for files that are images or scans (requires OCR).
+Upload Document → Drag & drop or browse a PDF/DOCX file
 
-Choose "Digital Text Document" for files where the text is selectable.
+Select Processing Type
 
-Extract Events: Click the "Set Sail & Extract" button to process the document.
+🖼️ Scanned / Image Document → Uses OCR
 
-View and Download: The application will display the extracted vessel details and the timeline of port events. You can then download the complete data as a JSON file or the event list as a CSV file.
+✍️ Digital Text Document → For selectable text PDFs/DOCX
+
+Extract Events → Click "Set Sail & Extract"
+
+View & Download
+
+Vessel details + port event timeline displayed
+
+Download results as JSON or CSV
+
+📌 Example Output
+{
+  "vessel_name": "MV Georgia M",
+  "voyage_no": "2025-08",
+  "port": "Singapore",
+  "events": [
+    {"time": "2025-08-20 09:00", "event": "Pilot on board"},
+    {"time": "2025-08-20 09:30", "event": "Vessel berthed"},
+    {"time": "2025-08-20 10:00", "event": "Cargo operations commenced"}
+  ]
+}
+
+📂 Data Export
+
+JSON → Complete extracted vessel + event data
+
+CSV → Only chronological event log
+
+🤝 Contributing
+
+Contributions are welcome! 🎉
+
+Fork this repo
+
+Create a new branch (feature-xyz)
+
+Submit a PR
+
+📜 License
+
+This project is licensed under the MIT License.
