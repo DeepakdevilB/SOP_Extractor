@@ -1,90 +1,77 @@
-# SoF AI Extractor
+Maritime SoF Event Extractor
+This web application uses the Gemini AI model to automatically extract structured data from maritime "Statement of Facts" (SoF) documents. Users can upload PDF or DOCX files, and the application will parse them to identify key details like vessel information and a chronological log of port operations events.
 
-A web-based application that uses **Google's Gemini AI** to automatically extract port operation events, start times, and end times from "Statement of Facts" (SoF) documents. The system accepts PDF and Word files, processes them in a template-agnostic way, and provides the structured data for download as **JSON** or **CSV**.
+The application is built with Python and Flask for the backend, and uses the google-generativeai library to interface with the Gemini API.
 
----
+Features
+AI-Powered Extraction: Leverages the Gemini model to understand and parse complex, unstructured maritime documents.
 
-## 📸 Screenshots
-Here are some sample screenshots of the application:
+Web-Based Interface: A modern and user-friendly interface for uploading documents and viewing results.
 
-### 1. Front Page UI  
-![Screenshot 1](static/Screenshot%202025-08-20%20225054.png)  
+Handles Multiple Document Types: Supports both text-based (digital) and scanned (image-based) PDF and DOCX files.
 
-### 2. Uploading a Document (PDF or DOCX)  
-![Screenshot 2](static/Screenshot%202025-08-20%20225114.png)  
+Structured Data Output: Converts unstructured SoF text into a clean JSON object containing ship details and a timeline of events.
 
-### 3. Sample PDF Used for Extraction  
-![Screenshot 6](static/Screenshot%202025-08-20%20225232.png)  
+Event Analysis: Provides a quick analysis of the extraction process, including success rate and the number of parsed vs. skipped events.
 
-### 4. Extraction Results with Download Options (CSV or JSON)  
-![Screenshot 3](static/Screenshot%202025-08-20%20225138.png)  
+Data Export: Allows users to download the full extracted data as a JSON file or just the event log as a CSV file.
 
-### 5. Extracted Data in CSV Format  
-![Screenshot 4](static/Screenshot%202025-08-20%20225202.png)  
+Setup and Installation
+Follow these steps to set up and run the project locally.
 
-### 6. Extracted Data in JSON Format  
-![Screenshot 5](static/Screenshot%202025-08-20%20225220.png)  
- 
+1. Prerequisites
+Python 3.8 or newer
 
+A Gemini API Key. You can get one from Google AI Studio.
 
----
+2. Clone the Repository
+git clone <your-repository-url>
+cd <your-repository-directory>
 
-## ✨ Features
-- **AI-Powered Extraction**: Leverages the Google Gemini Flash model for intelligent and accurate data extraction.  
-- **Multi-Format Support**: Accepts both PDF (`.pdf`) and Word (`.docx`) documents.  
-- **Template-Agnostic**: Works with various SoF layouts and formats without pre-configuration.  
-- **Structured Output**: Converts unstructured text into a clean, structured list of events.  
-- **Data Download**: Allows users to download extracted data in both JSON and CSV formats.  
-- **Modern UI**: Clean, responsive, and user-friendly interface with a drag-and-drop file upload zone.  
+3. Set Up a Virtual Environment
+It's highly recommended to use a virtual environment to manage project dependencies.
 
----
+# Create the virtual environment
+python3 -m venv venv
 
-## 🛠️ Tech Stack
-- **Backend**: Python 3  
-- **Web Framework**: Flask  
-- **AI Model**: Google Gemini 1.5 Flash  
-- **Document Processing**:  
-  - `PyPDF2` for PDF text extraction  
-  - `python-docx` for Word document text extraction  
-- **Frontend**: HTML5, Bootstrap 5, Custom CSS & JavaScript  
-
----
-
-## 🚀 Setup and Installation
-
-### 1. Prerequisites
-- Python **3.8 or newer**  
-- A **Google Gemini API Key** (available from Google AI Studio)
-
-### 2. Clone the Repository
-```bash
-git clone https://github.com/your-username/sof-ai-extractor.git
-cd sof-ai-extractor
-```
-
-### 3. Install Dependencies
-```bash
-# Create a virtual environment
-python -m venv venv
-
-# Activate the virtual environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
+# Activate it (on macOS/Linux)
 source venv/bin/activate
-```
 
-### 4. Install the required packages
-```bash
-pip install Flask google-generativeai python-dotenv PyPDF2 python-docx
-```
+# Activate it (on Windows)
+.\venv\Scripts\activate
 
-### 5. set up Environment variables
-```bash
+4. Install Dependencies
+Install all the required Python libraries from the requirements.txt file.
+
+pip install -r requirements.txt
+
+5. Configure Your API Key
+The application loads your Gemini API key from a .env file.
+
+Create a new file named .env in the root of your project directory.
+
+Add your API key to this file as follows:
+
 GEMINI_API_KEY="YOUR_API_KEY_HERE"
-```
 
-## How to Run
-```bash
-python app.py
-```
+How to Run
+With your virtual environment activated and the .env file configured, start the Flask web server with the following command:
+
+python3 app.py
+
+The application will now be running and accessible at http://127.0.0.1:8081 in your web browser.
+
+How to Use
+Open the Web Interface: Navigate to http://127.0.0.1:8081.
+
+Upload a Document: Drag and drop your SoF document (PDF or DOCX) into the upload area, or click to browse for a file.
+
+Select Processing Type:
+
+Choose "Scanned / Image Document" for files that are images or scans (requires OCR).
+
+Choose "Digital Text Document" for files where the text is selectable.
+
+Extract Events: Click the "Set Sail & Extract" button to process the document.
+
+View and Download: The application will display the extracted vessel details and the timeline of port events. You can then download the complete data as a JSON file or the event list as a CSV file.
